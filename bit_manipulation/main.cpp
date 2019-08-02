@@ -10,12 +10,13 @@ using std::endl;
 typedef unsigned int uint;
 
 void printVector(vector<uint8_t> vect, uint decValue);
-void bitManipulation(uint x, uint y, uint m , uint n);
+void bitManipulation(uint x, uint y, int m , int n);
 
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    uint x, y, m , n;
+    uint x, y;
+    int m, n;
     cout << "¬ведите числа x, y, m, n: ";
     cin >> x >> y >> m >> n;
 
@@ -35,7 +36,7 @@ int main() {
 }
 
 
-void bitManipulation(uint x, uint y, uint m, uint n) {
+void bitManipulation(uint x, uint y, int m, int n) {
     cout << endl;
     cout << "\t\t\tbinary" << "\t\t\tdecimal" << endl;
     cout << endl;
@@ -52,7 +53,7 @@ void bitManipulation(uint x, uint y, uint m, uint n) {
     printVector(yVec, y);
 
     size_t xVecSize = xVec.size();
-    for (size_t i = 0; i < m; i++) {
+    for (int i = 0; i < m; i++) {
         xVec[xVecSize - i - 1] = yVec[m - i - 1];
     }
 
@@ -60,7 +61,7 @@ void bitManipulation(uint x, uint y, uint m, uint n) {
     printVector(xVec, bw.getDecimalFromBinaryNumberForm(xVec));
 
     size_t yVecSize = yVec.size();
-    for (size_t i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         if (yVec[yVecSize - i - 1] == 1) {
             yVec[yVecSize - i - 1] = 0;
         }
