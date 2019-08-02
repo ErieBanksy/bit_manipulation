@@ -1,76 +1,88 @@
-#include <iostream>
-#include <vector>
+#include "BinaryView.h"
+
+#define MAX_INT_SIZE 4294967295
+#define MAX_BIT_COUNT 32
 
 using std::cout;
 using std::cin;
 using std::endl;
-using std::vector;
 
-vector<uint8_t> getBinaryVector(uint8_t value);
+typedef unsigned int uint;
 
-vector<uint8_t> bitMasks = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
-
-int bitCount = 8;
-int byteCount = 4;
+void printVector(vector<uint8_t> vect, uint decValue);
+void bitManipulation(uint x, uint y, uint m , uint n);
 
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    int n;
-    int maskGetByte = 0x000000FF;
+    uint x, y, m , n;
+    cout << "¬ведите числа x, y, m, n: ";
+    cin >> x >> y >> m >> n;
 
-    vector<uint8_t> byteVec(byteCount);
-    vector<vector<uint8_t>> bitRepr(byteCount);
-    for (size_t i = 0; i < bitRepr.size(); i++) {
-        bitRepr[i].resize(bitCount);
-    }
-
-    cout << "¬ведите число: ";
-    cin >> n;
-    
-    int byte = 0;
-    int bitShift = 0;
-    for (int i = 0; i < byteCount; i++) {
-        byte = n & maskGetByte;
-        byte = byte >> bitShift;
-        byteVec[byteCount - i - 1] = byte;
-        maskGetByte = maskGetByte << bitCount;
-        bitShift += bitCount;
-    }
-    
-    for (size_t i = 0; i < byteVec.size(); i++) {
-        cout << (int)byteVec[i] << endl;
+    if (x < 0 || x > MAX_INT_SIZE || 
+        y < 0 || y > MAX_INT_SIZE || 
+        m < 0 || m > MAX_BIT_COUNT ||
+        n < 0 || n > MAX_BIT_COUNT) {
+        cout << "ERROR: ¬ведены некорректные значени€!" << endl;
+        system("pause");
+        return -1;
     }
 
-    for (size_t i = 0; i < byteVec.size(); i++) {
-        bitRepr[i] = getBinaryVector(byteVec[i]);
-    }
-
-    for (size_t i = 0; i < bitRepr.size(); i++) {
-        for (size_t j = 0; j < bitRepr[i].size(); j++) {
-            cout << (int)bitRepr[i][j];
-        }
-        cout << endl;
-    }
+    bitManipulation(x, y, m, n);
 
     system("pause");
     return 0;
 }
 
 
-vector<uint8_t> getBinaryVector(uint8_t value) {
+void bitManipulation(uint x, uint y, uint m, uint n) {
+    cout << endl;
+    cout << "\t\t\tbinary" << "\t\t\tdecimal" << endl;
+    cout << endl;
 
-    vector<uint8_t> binVec(bitCount);
-    uint8_t bit = 0;
-    for (int i = 0; i < bitCount; i++) {
-        bit = value & bitMasks[i];
-        if (bit != 0) {
-            binVec[i] = 1;
+    BinaryView &bw = BinaryView::getInstance();
+
+    vector<uint8_t> xVec = bw.getBinaryNumberForm(x);
+    vector<uint8_t> yVec = bw.getBinaryNumberForm(y);
+
+    cout << "X = \t";
+    printVector(xVec, x);
+
+    cout << "Y = \t";
+    printVector(yVec, y);
+
+    size_t xVecSize = xVec.size();
+    for (size_t i = 0; i < m; i++) {
+        xVec[xVecSize - i - 1] = yVec[m - i - 1];
+    }
+
+    cout << "modX = \t";
+    printVector(xVec, bw.getDecimalFromBinaryNumberForm(xVec));
+
+    size_t yVecSize = yVec.size();
+    for (size_t i = 0; i < n; i++) {
+        if (yVec[yVecSize - i - 1] == 1) {
+            yVec[yVecSize - i - 1] = 0;
         }
         else {
-            binVec[i] = 0;
+            yVec[yVecSize - i - 1] = 1;
         }
     }
 
-    return binVec;
+    cout << "modY = \t";
+    printVector(yVec, bw.getDecimalFromBinaryNumberForm(yVec));
+}
+
+
+void printVector(vector<uint8_t> vect, uint decValue) {
+    int bitCount = 8;
+
+    for (size_t i = 0; i < vect.size(); i++) {
+        if (i % bitCount == 0) {
+            cout << " ";
+        }
+        cout << static_cast<int>(vect[i]);
+    }
+    cout << " | \t" << decValue << endl;
+    cout << endl;
 }
