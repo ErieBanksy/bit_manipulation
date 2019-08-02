@@ -6,6 +6,8 @@ As a result, the program displays the binary form of the original numbers x and 
 
 The program is implemented without the use of special libraries.
 
+The numbers x and y are of type unsigned int.
+
 ---
 
 Программа считывает с клавиатуры 4 десятичных числа x, y, m, n. В числе x младшие m бит  заменяются на старшие m бит из числа y, затем младшие n бит инвертируются в числе y.
@@ -13,3 +15,5 @@ The program is implemented without the use of special libraries.
 В результате программа выводит двоичный вид исходных чисел х и у, а также полученные новые значения х и у в десятичном и двоичном виде.
 
 Программа реализована без использования специальных библиотек.
+
+Числа x и y имеют тип  unsigned int.
