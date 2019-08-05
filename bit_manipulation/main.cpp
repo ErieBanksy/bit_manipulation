@@ -17,14 +17,14 @@ int main() {
 
     uint x, y;
     int m, n;
-    cout << "¬ведите числа x, y, m, n: ";
+    cout << "Input numbers x, y, m, n: ";
     cin >> x >> y >> m >> n;
 
     if (x < 0 || x > UINT_MAX ||
         y < 0 || y > UINT_MAX ||
         m < 0 || m > maxBitCount ||
         n < 0 || n > maxBitCount) {
-        cout << "ERROR: ¬ведены некорректные значени€!" << endl;
+        cout << "ERROR: Incorrect values ??entered!" << endl;
         system("pause");
         return -1;
     }
