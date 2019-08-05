@@ -23,10 +23,10 @@ The numbers x and y are of type unsigned int.
 **Examples/Примеры:**
 
 1. Input: 
-x = 60627 
-y = 3725 
-m = 5
-n = 7
+x = 60627  
+y = 3725  
+m = 5 
+n = 7 
 
 Output:
 
@@ -40,10 +40,10 @@ modY =   00000000 00000000 00001110 11110010 |  3826
 
 
 2. Input: 
-x = 456961458 
-y = 2326052717
-m = 17
-n = 23
+x = 456961458  
+y = 2326052717 
+m = 17 
+n = 23 
 
 Output:
 
