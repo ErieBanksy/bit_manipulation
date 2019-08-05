@@ -1,13 +1,13 @@
 #include "BinaryView.h"
-
-#define MAX_INT_SIZE 4294967295
-#define MAX_BIT_COUNT 32
+#include <climits>
 
 using std::cout;
 using std::cin;
 using std::endl;
 
 typedef unsigned int uint;
+
+const int maxBitCount = 32;
 
 void printVector(vector<uint8_t> vect, uint decValue);
 void bitManipulation(uint x, uint y, int m , int n);
@@ -20,10 +20,10 @@ int main() {
     cout << "¬ведите числа x, y, m, n: ";
     cin >> x >> y >> m >> n;
 
-    if (x < 0 || x > MAX_INT_SIZE || 
-        y < 0 || y > MAX_INT_SIZE || 
-        m < 0 || m > MAX_BIT_COUNT ||
-        n < 0 || n > MAX_BIT_COUNT) {
+    if (x < 0 || x > UINT_MAX ||
+        y < 0 || y > UINT_MAX ||
+        m < 0 || m > maxBitCount ||
+        n < 0 || n > maxBitCount) {
         cout << "ERROR: ¬ведены некорректные значени€!" << endl;
         system("pause");
         return -1;

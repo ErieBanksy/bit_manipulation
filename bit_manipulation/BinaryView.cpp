@@ -6,12 +6,7 @@ vector<uint8_t> BinaryView::getValueByteToBit(uint8_t value) {
     uint8_t bit = 0;
     for (int i = 0; i < bitCount; i++) {
         bit = value & bitMasks[i];
-        if (bit != 0) {
-            binVec[i] = 1;
-        }
-        else {
-            binVec[i] = 0;
-        }
+        binVec[i] = bit != 0 ? 1 : 0;
     }
 
     return binVec;

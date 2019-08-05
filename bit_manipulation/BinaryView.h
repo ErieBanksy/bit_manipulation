@@ -16,11 +16,11 @@ public:
     vector<uint8_t> getBinaryNumberForm(int value);
     int getDecimalFromBinaryNumberForm(vector<uint8_t> binForm);
 
-    int bitCount = 8;
-    int byteCount = 4;
-    int maxBitCount = 32;
+    const int bitCount = 8;
+    const int byteCount = 4;
+    const int maxBitCount = 32;
 
-    vector<uint8_t> bitMasks = { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 };
+    const vector<uint8_t> bitMasks = { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 };
 
 private:
     BinaryView() {};
