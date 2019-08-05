@@ -13,8 +13,6 @@ void printVector(vector<uint8_t> vect, uint decValue);
 void bitManipulation(uint x, uint y, int m , int n);
 
 int main() {
-    setlocale(LC_ALL, "Russian");
-
     uint x, y;
     int m, n;
     cout << "Input numbers x, y, m, n: ";
